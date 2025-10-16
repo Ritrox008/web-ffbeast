@@ -11,10 +11,10 @@ Requires a browser with [WebHID](https://developer.mozilla.org/en-US/docs/Web/AP
 - Auto-reconnect capability
 
 ## To Do
-- Periphery tab
 - Export/import settings
 - Simplified quick-settings tab
 - Dark mode
+- Download/PWA
 
 ## Linux
 > [!IMPORTANT]

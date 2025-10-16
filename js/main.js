@@ -1,8 +1,7 @@
     // main.js - Main script for the FFBeast Wheel web interface
 
-
+      import * as API from './wheel_api_lib.js';
       import { WheelApi } from './wheel_api_comm.js';
-      import { SettingsFieldEnum } from './wheel_api_lib.js';
       const wheelApi = new WheelApi();
       let latestState = null; // Variable to hold the latest wheel state from readState/setupInputReportListener
       let lastConnectionStatus = null; // Track last connection status
@@ -40,9 +39,11 @@
           connected = await wheelApi.tryAutoReconnect();
           if (connected) {
             log('Reconnected to the device successfully.');
-            updateEffectSettings();         
-            updateHardwareSettings();       
-            updateFirmwareLicense();        
+            updateEffectSettings();
+            updateHardwareSettings();
+            updateFirmwareLicense();
+            updateGpioExtensionSettings();
+            updateAdcExtensionSettings();
             wheelApi.setupInputReportListener((state) => {   // Listener for device state
               latestState = state;                           // Store the latest state
             });
@@ -184,7 +185,8 @@
             updateEffectSettings();
             break;
           case 'periphery':
-            //updateGpioExtensionSettings();
+            updateGpioExtensionSettings();
+            updateAdcExtensionSettings();
             break;
           case 'controller':
             updateHardwareSettings();
@@ -259,37 +261,56 @@
       
       // Helper: updates all elements whose id matches a key in the data object
       function updateElementsFromData(data) {
-        if (!data) return;
-        Object.keys(data).forEach(key => {
-          const el = document.getElementById(key);
-          if (el) {
-            if (el.type === "checkbox") {
-              // Support custom checked/unchecked values
-              const checkedValue = el.getAttribute('data-checked-value');
-              const uncheckedValue = el.getAttribute('data-unchecked-value');
-              if (checkedValue !== null && uncheckedValue !== null) {
-                // Set checked if data[key] matches checkedValue
-                el.checked = String(data[key]) === String(checkedValue);
-                } else {
-                // Fallback to boolean logic
-                el.checked = !!data[key];
-                log(`Checkbox "${key}" (id="${el.id}") missing data-checked-value or data-unchecked-value, using boolean logic.`);
-              }
-            } else if (el.type === "range" || el.type === "number" || el.type === "text") {
-              el.value = data[key];
-              //get parent control and update range input if it exists
-              const control = el.closest('.control');
-              if (control) {
-                const rangeInput = control.querySelector('input[type="range"]');
-                if (rangeInput) {
-                  rangeInput.value = data[key];
-                }
-              }
-            }
-            // Add more types if needed
+      if (!data) return;
+      Object.entries(data).forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+              // Handle arrays
+              value.forEach((val, index) => {
+                  const elementId = `${key}[${index}]`;
+                  const elem = document.getElementById(elementId);
+                  if (elem) updateElement(elem, val);
+              });
+          } else {
+              // Handle non-array values
+              const elem = document.getElementById(key);
+              if (elem) updateElement(elem, value);
           }
-        });
+      });
+  }
+
+    // Helper function to update a single element based on its type
+    function updateElement(elem, value) {
+      if (elem.type === "checkbox") {
+          // Support of custom checked/unchecked values
+          const checkedValue = elem.getAttribute('data-checked-value');
+          const uncheckedValue = elem.getAttribute('data-unchecked-value');
+          if (checkedValue !== null && uncheckedValue !== null) {
+              elem.checked = String(value) === String(checkedValue);
+          } else {
+              elem.checked = !!value;
+              log(`Checkbox "${elem.id}" missing data-checked-value or data-unchecked-value, using boolean logic.`);
+          }
+      } else if (elem.tagName === "SELECT") {
+        // Look up the value in API lib enums
+        const apiEnum = elem.getAttribute('data-enum');
+        if (apiEnum) {
+            const option = Object.keys(API[apiEnum]).find(key => API[apiEnum][key] === value);
+            if (option) {
+                elem.value = option; // Set the select element's value to the key
+            } else {
+                log(`Unknown value for ${apiEnum}: ${value}`);
+            }
+        }
+      } else if (elem.type === "range" || elem.type === "number" || elem.type === "text") {
+          elem.value = value;
+          // Update associated range input if it exists
+          const control = elem.closest('.control');
+          if (control) {
+              const rangeInput = control.querySelector('input[type="range"]');
+              if (rangeInput) rangeInput.value = value;
+          }
       }
+  }
       
 
 
@@ -352,6 +373,7 @@
         const range = control.querySelector('input[type="range"]');
         const number = control.querySelector('input[type="number"]');
         const checkbox = control.querySelector('input[type="checkbox"]');
+        const select = control.querySelector('select');
         const fieldElem = control.querySelector('[settings-field]');
 
         if (range && number) {
@@ -405,21 +427,29 @@
             await triggerSettingSend(fieldElem);
           });
         }
+        if (select && fieldElem) {
+          select.addEventListener('change', async () => {
+            await triggerSettingSend(fieldElem);
+          });
+        }
       });
 
       // Helper function to send the setting
       async function triggerSettingSend(input) {
         const fieldName = input.getAttribute('settings-field');
-        const field = SettingsFieldEnum[fieldName];
-        if (field === undefined) {
+        const field = API.SettingsFieldEnum[fieldName];
+        if (field === null || field === undefined) {
           log('Unknown settings field: ' + fieldName);
           return;
         }
-        
-        const typeId = input.getAttribute('id');
-        let fieldDataType = wheelApi.getFieldDataType(typeId);
-        
+
+        const index = input.getAttribute('data-index') || 0; // Default to 0 if no index
+
+        const dataTypeId = input.getAttribute('id');
+        const fieldDataType = wheelApi.getFieldDataType(dataTypeId);
+
         let fieldValue;
+
         if (input.type === "checkbox") {
           const checkedValue = input.getAttribute('data-checked-value');
           const uncheckedValue = input.getAttribute('data-unchecked-value');
@@ -428,18 +458,29 @@
             return;
           }
           fieldValue = input.checked ? Number(checkedValue) : Number(uncheckedValue);
-        } else if (input.type === "number" || input.type === "range") {
+        }
+        else if (input.type === "number" || input.type === "range") {
           fieldValue = Number(input.value);
-        } else if (input.tagName === "SELECT") {
-          fieldValue = 0;
-        } else {
+        }
+        else if (input.tagName === "SELECT") {
+          const apiEnum = input.getAttribute('data-enum');
+          if (apiEnum) {
+            const enumValue =  API[apiEnum][input.value];
+            if (enumValue !== undefined) {
+              fieldValue = Number(enumValue);
+            } else {
+              log(`Unknown value for ${apiEnum}: ${input.value}`);
+            }
+          }
+        }
+        else {
           log(`Error: Unsupported input type for settings-field ${fieldName} ${field}`);
           return;
         }
 
         try {
-          await wheelApi.sendSettingReport(field, 0, fieldValue, fieldDataType);
-          log(`Try sending setting: ${fieldName} = ${fieldValue} , ${fieldDataType}`);
+          await wheelApi.sendSettingReport(field, index, fieldValue, fieldDataType);
+          log(`Try sending setting: ${fieldName}(${field}) = ${fieldValue} , ${fieldDataType} , ${index}`);
         } catch (e) {
           log(`Error sending setting: ${e.message}`);
         }

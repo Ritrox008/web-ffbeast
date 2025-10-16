@@ -96,6 +96,7 @@ async tryAutoReconnect() {
         for (const structDef of structDefs) {
             for (const field of structDef) {
                 // Handle array fields (strip [index] for matching)
+                fieldName = fieldName.split('[')[0];
                 let baseName = field.name.split('[')[0];
                 if (baseName === fieldName) {
                     return field.type;

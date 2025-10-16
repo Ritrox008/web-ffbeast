@@ -144,6 +144,11 @@ h2 {
     border-radius: 6px;
     background: #fff;
 }
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+}
 .control {
     margin: 6px 0;
     display: flex;
@@ -153,7 +158,7 @@ h2 {
 }
 label {
     display: inline-block;
-    min-width: 270px;
+    min-width: 90px;
     width: 270px;
     margin-right: 0px;
     text-align: left;
@@ -175,6 +180,50 @@ label {
     height: 22px;
     margin-left: 0;
 }
+.gpio-pins label {
+    width: 90px;
+}
+.gpio-pins select {
+    margin-left: 0;
+    flex: 1 1 100%;
+}
+.spi-extension select, .spi-extension input {
+    min-width: 100px;
+}
+.gpio-buttons {
+    gap: 0px;
+}
+.gpio-buttons label {
+    flex: 1 1 60px;
+    min-width: 30px;
+    width: auto;
+    font-size: 0.8em;
+}
+.gpio-buttons select {
+    margin-left: 0;
+    flex: 1 3 70px;
+    min-width: 30px;
+    font-size: 0.8em;
+}
+.analog-axes {
+    width: 100%;
+    border-collapse: collapse;
+}
+.analog-axes th {
+    font-size: 1em;
+    padding: 6px;
+    text-align: center;
+}
+.analog-axes td {
+    padding: 6px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+.analog-axes input[type="number"] {
+    width: 60px;
+}
+
 button {
     display: flex;
     margin: 0px;

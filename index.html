@@ -52,6 +52,7 @@
   </div>
 
 
+
   <div id="effects" class="tab-content active hidden-when-disconnected">
     <div class="section">
       <h3>Common</h3>
@@ -97,7 +98,6 @@
       </div>
     </div>
 
-
     <div class="section">
       <h3>DirectX FFB</h3>
       <div class="control">
@@ -126,20 +126,533 @@
    </div>
 
 
-    <div id="periphery" class="tab-content hidden-when-disconnected">
-      <div class="section">
-        <p>Coming soon...</p>
+
+  <div id="periphery" class="tab-content hidden-when-disconnected">
+    <div class="section gpio-pins" data-pro-feature>
+      <h3>GPIO modes (requires reboot)</h3>
+      <!--Only pins 1,2,3 support analog input. Only pin 8 supports braking PWM. Encoder Z's don't support buttons-->
+      <div style="display: flex; gap: 30px;">
+        <div class="column">
+          <div class="control">
+            <label for="PinMode[0]">Pin 1</label>
+            <select id="PinMode[0]" data-index="0" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_ANALOG">Analog</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[1]">Pin 2</label>
+            <select id="PinMode[1]" data-index="1" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_ANALOG">Analog</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[2]">Pin 3</label>
+            <select id="PinMode[2]" data-index="2" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_ANALOG">Analog</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[3]">Pin 4</label>
+            <select id="PinMode[3]" data-index="3" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[4]">Pin 5</label>
+            <select id="PinMode[4]" data-index="4" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+        </div>
+        <div class="column">
+          <div class="control">
+            <label for="PinMode[5]">Pin 6</label>
+            <select id="PinMode[5]" data-index="5" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[6]">Pin 7</label>
+            <select id="PinMode[6]" data-index="6" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[7]">Pin 8</label>
+            <select id="PinMode[7]" data-index="7" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_GPIO">Generic button</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_BRAKING_PWM">Braking PWM</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[8]">Encoder Z0</label>
+            <select id="PinMode[8]" data-index="8" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="PinMode[9]">Encoder Z1</label>
+            <select id="PinMode[9]" data-index="9" settings-field="SETTINGS_FIELD_PIN_MODE" data-enum="PinModeEnum">
+              <option value="PIN_MODE_NONE">Disabled</option>
+              <option value="PIN_MODE_SPI_CS">SPI CS</option>
+              <option value="PIN_MODE_SPI_SCK">SPI SCK</option>
+              <option value="PIN_MODE_SPI_MISO">SPI MISO</option>
+              <option value="PIN_MODE_ENABLE_EFFECTS">Enable effects switch</option>
+              <option value="PIN_MODE_CENTER_RESET">Reset center button</option>
+              <option value="PIN_MODE_EFFECT_LED">Effect LED</option> 
+              <option value="PIN_MODE_REBOOT">Reboot</option>
+            </select>
+          </div>  
+        </div>
       </div>
     </div>
 
 
-    <div id="controller" class="tab-content hidden-when-disconnected">
+    <div class="section spi-extension" data-pro-feature>
+      <h3>SPI extension</h3>
+      <div class="control">
+        <label for="ExtensionMode">Extension mode</label>
+        <select id="ExtensionMode" settings-field="SETTINGS_FIELD_EXTENSION_MODE" data-enum="ExtensionModeEnum">
+          <option value="EXTENSION_MODE_NONE">Disabled</option>
+          <option value="EXTENSION_MODE_CUSTOM">Custom</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="SpiMode">SPI mode</label>
+        <select id="SpiMode" settings-field="SETTINGS_FIELD_SPI_MODE" data-enum="SpiModeEnum">
+          <option value="SPI_MODE_0">Mode 0</option>
+          <option value="SPI_MODE_1">Mode 1</option>
+          <option value="SPI_MODE_2">Mode 2</option>
+          <option value="SPI_MODE_3">Mode 3</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="SpiLatchMode">Latch mode</label>
+        <select id="SpiLatchMode" settings-field="SETTINGS_FIELD_SPI_LATCH_MODE" data-enum="SpiLatchModeEnum">
+          <option value="LATCH_MODE_UP">Latch UP</option>
+          <option value="LATCH_MODE_DOWN">Latch DOWN</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="SpiLatchDelay">Latch delay (microseconds)</label>
+        <input type="number" id="SpiLatchDelay" min="1" max="10" value="1" settings-field="SETTINGS_FIELD_SPI_LATCH_DELAY">
+      </div>
+      <div class="control">
+        <label for="SpiClkPulseLength">SCK pulse length (microseconds)</label>
+        <input type="number" id="SpiClkPulseLength" min="1" max="10" value="1" settings-field="SETTINGS_FIELD_SPI_CLK_PULSE_LENGTH">
+      </div>
+    </div>
+
+
+    <div class="section gpio-buttons" data-pro-feature>
+      <h3>Button modes</h3>
+      <div style="display: flex; gap: 10px;">
+        <div class="column">
+          <h4>GPIO buttons</h4>
+          <div class="control">
+            <label for="ButtonMode[0]">Button 1</label>
+            <select id="ButtonMode[0]" data-index="0" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[1]">Button 2</label>
+            <select id="ButtonMode[1]" data-index="1" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[2]">Button 3</label>
+            <select id="ButtonMode[2]" data-index="2" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[3]">Button 4</label>
+            <select id="ButtonMode[3]" data-index="3" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[4]">Button 5</label>
+            <select id="ButtonMode[4]" data-index="4" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[5]">Button 6</label>
+            <select id="ButtonMode[5]" data-index="5" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[6]">Button 7</label>
+            <select id="ButtonMode[6]" data-index="6" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[7]">Button 8</label>
+            <select id="ButtonMode[7]" data-index="7" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column">
+          <h4>Shift register 1</h4>
+          <div class="control">
+            <label for="ButtonMode[8]">Button 9</label>
+            <select id="ButtonMode[8]" data-index="8" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[9]">Button 10</label>
+            <select id="ButtonMode[9]" data-index="9" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[10]">Button 11</label>
+            <select id="ButtonMode[10]" data-index="10" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[11]">Button 12</label>
+            <select id="ButtonMode[11]" data-index="11" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[12]">Button 13</label>
+            <select id="ButtonMode[12]" data-index="12" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[13]">Button 14</label>
+            <select id="ButtonMode[13]" data-index="13" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[14]">Button 15</label>
+            <select id="ButtonMode[14]" data-index="14" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[15]">Button 16</label>
+            <select id="ButtonMode[15]" data-index="15" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column">
+          <h4>Shift register 2</h4>
+          <div class="control">
+            <label for="ButtonMode[16]">Button 17</label>
+            <select id="ButtonMode[16]" data-index="16" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[17]">Button 18</label>
+            <select id="ButtonMode[17]" data-index="17" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[18]">Button 19</label>
+            <select id="ButtonMode[18]" data-index="18" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[19]">Button 20</label>
+            <select id="ButtonMode[19]" data-index="19" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[20]">Button 21</label>
+            <select id="ButtonMode[20]" data-index="20" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[21]">Button 22</label>
+            <select id="ButtonMode[21]" data-index="21" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[22]">Button 23</label>
+            <select id="ButtonMode[22]" data-index="22" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[23]">Button 24</label>
+            <select id="ButtonMode[23]" data-index="23" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column">
+          <h4>Shift register 3</h4>
+          <div class="control">
+            <label for="ButtonMode[24]">Button 25</label>
+            <select id="ButtonMode[24]" data-index="24" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[25]">Button 26</label>
+            <select id="ButtonMode[25]" data-index="25" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[26]">Button 27</label>
+            <select id="ButtonMode[26]" data-index="26" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[27]">Button 28</label>
+            <select id="ButtonMode[27]" data-index="27" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[28]">Button 29</label>
+            <select id="ButtonMode[28]" data-index="28" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[29]">Button 30</label>
+            <select id="ButtonMode[29]" data-index="29" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[30]">Button 31</label>
+            <select id="ButtonMode[30]" data-index="30" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="ButtonMode[31]">Button 32</label>
+            <select id="ButtonMode[31]" data-index="31" settings-field="SETTINGS_FIELD_BUTTON_MODE" data-enum="ButtonModeEnum">
+              <option value="BUTTON_MODE_NONE">Disabled</option>
+              <option value="BUTTON_MODE_NORMAL">Normal</option>
+              <option value="BUTTON_MODE_INVERTED">Inverted</option>
+            </select>
+          </div>     
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section" data-pro-feature>
+      <h3>Analog axes</h3>
+      <table class="analog-axes">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Lower dead zone</th>
+            <th>Upper dead zone</th>
+            <th>Smoothing (%)</th>
+            <th>Button low (%)</th>
+            <th>Button high (%)</th>
+            <th>Invert</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rx</td>
+            <td class="control"><input type="number" id="RAxisMin[0]" data-index="0" settings-field="SETTINGS_FIELD_ADC_MIN_DEAD_ZONE" min="0" max="32767" value="0"></td>
+            <td class="control"><input type="number" id="RAxisMax[0]" data-index="0" settings-field="SETTINGS_FIELD_ADC_MAX_DEAD_ZONE" min="0" max="32767" value="32767"></td>
+            <td class="control"><input type="number" id="RAxisSmoothing[0]" data-index="0" settings-field="SETTINGS_FIELD_ADC_SMOOTHING" min="0" max="100" value="50"></td>
+            <td class="control"><input type="number" id="RAxisToButtonLow[0]" data-index="0" settings-field="SETTINGS_FIELD_ADC_TO_BUTTON_LOW" min="0" max="100" value="0"></td>
+            <td class="control"><input type="number" id="RAxisToButtonHigh[0]" data-index="0" settings-field="SETTINGS_FIELD_ADC_TO_BUTTON_HIGH" min="0" max="100" value="100"></td>
+            <td class="control"><input type="checkbox" id="RAxisInvert[0]" data-index="0" settings-field="SETTINGS_FIELD_ADC_INVERT" data-checked-value="1" data-unchecked-value="0"></td>
+          </tr>
+          <tr>
+            <td>Ry</td>
+            <td class="control"><input type="number" id="RAxisMin[1]" data-index="1" settings-field="SETTINGS_FIELD_ADC_MIN_DEAD_ZONE" min="0" max="32767" value="0"></td>
+            <td class="control"><input type="number" id="RAxisMax[1]" data-index="1" settings-field="SETTINGS_FIELD_ADC_MAX_DEAD_ZONE" min="0" max="32767" value="32767"></td>
+            <td class="control"><input type="number" id="RAxisSmoothing[1]" data-index="1" settings-field="SETTINGS_FIELD_ADC_SMOOTHING" min="0" max="100" value="50"></td>
+            <td class="control"><input type="number" id="RAxisToButtonLow[1]" data-index="1" settings-field="SETTINGS_FIELD_ADC_TO_BUTTON_LOW" min="0" max="100" value="0"></td>
+            <td class="control"><input type="number" id="RAxisToButtonHigh[1]" data-index="1" settings-field="SETTINGS_FIELD_ADC_TO_BUTTON_HIGH" min="0" max="100" value="100"></td>
+            <td class="control"><input type="checkbox" id="RAxisInvert[1]" data-index="1" settings-field="SETTINGS_FIELD_ADC_INVERT" data-checked-value="1" data-unchecked-value="0"></td>
+          </tr>
+          <tr>
+            <td>Rz</td>
+            <td class="control"><input type="number" id="RAxisMin[2]" data-index="2" settings-field="SETTINGS_FIELD_ADC_MIN_DEAD_ZONE" min="0" max="32767" value="0"></td>
+            <td class="control"><input type="number" id="RAxisMax[2]" data-index="2" settings-field="SETTINGS_FIELD_ADC_MAX_DEAD_ZONE" min="0" max="32767" value="32767"></td>
+            <td class="control"><input type="number" id="RAxisSmoothing[2]" data-index="2" settings-field="SETTINGS_FIELD_ADC_SMOOTHING" min="0" max="100" value="50"></td>
+            <td class="control"><input type="number" id="RAxisToButtonLow[2]" data-index="2" settings-field="SETTINGS_FIELD_ADC_TO_BUTTON_LOW" min="0" max="100" value="0"></td>
+            <td class="control"><input type="number" id="RAxisToButtonHigh[2]" data-index="2" settings-field="SETTINGS_FIELD_ADC_TO_BUTTON_HIGH" min="0" max="100" value="100"></td>
+            <td class="control"><input type="checkbox" id="RAxisInvert[2]" data-index="2" settings-field="SETTINGS_FIELD_ADC_INVERT" data-checked-value="1" data-unchecked-value="0"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+
+  <div id="controller" class="tab-content hidden-when-disconnected">
       <div class="section">
         <div class="control">
           <label for="ForceEnabled">
             <input type="checkbox" id="ForceEnabled" settings-field="SETTINGS_FIELD_FORCE_ENABLED"
             data-checked-value="1" data-unchecked-value="0">
-            Enable forces (Require reboot)
+            Enable forces (requires reboot)
         </label>
         </div>
         <div class="control">
@@ -164,8 +677,8 @@
         </label>
         </div>
         <div class="control" style="display:none;">
-          <label for="AmplifierGain">Current sense gain (Require reboot)</label>        <!--not working for now-->
-          <select id="AmplifierGain" settings-field="SETTINGS_FIELD_AMPLIFIER_GAIN">
+          <label for="AmplifierGain">Current sense gain (requires reboot)</label>        <!--hidden setting-->
+          <select id="AmplifierGain" settings-field="SETTINGS_FIELD_AMPLIFIER_GAIN" data-enum="AmplifierGainEnum">
             <option value="AMPLIFIER_GAIN_80">80V/V</option>
             <option value="AMPLIFIER_GAIN_40">40V/V</option>
             <option value="AMPLIFIER_GAIN_20">20V/V</option>
@@ -224,6 +737,7 @@
     </div>
 
 
+
     <div id="license" class="tab-content hidden-when-disconnected">
       <div class="section">
         <div class="control">
@@ -239,6 +753,7 @@
         </div>
       </div>
     </div>
+
 
 
     <div class="bottom-buttons hidden-when-disconnected">
